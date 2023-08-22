@@ -37,13 +37,19 @@ function fetchData() {
             console.log("API Response:", data);  // Log the API response
 
             // Check if the expected keys are present in the response
-            if (data['t'] && data['c']) {
+
+            if (data['s'] && data['s'] === 'no_data') {
+                console.error("No data available for the selected stock and date range.");
+                // Optionally, display a message to the user on the webpage
+                document.getElementById('results').innerHTML = "<p>No data available for the selected stock and date range.</p>";
+            } else if (data['t'] && data['c']) {
                 const dates = data['t'].map(timestamp => new Date(timestamp * 1000).toISOString().split('T')[0]);
                 const prices = data['c'];
                 plotData(dates, prices);
             } else {
-                console.error("Unexpected data format or missing data:", data);
+                console.error("Unexpected data format:", data);
             }
+                        
         })
         .catch(error => {
             console.error('Error fetching data:', error);
