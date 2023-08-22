@@ -23,7 +23,7 @@ function plotData(dates, prices) {
 }
 
 function fetchAndPlotData() {
-    const apiKey = 'PFWM5H94IR01A1HR';
+    const apiKey = 'PFWM5H94IR01A1HR.';
     const ticker = document.getElementById('stockTicker').value;
     const startDate = document.getElementById('startDate').value;
     const endDate = document.getElementById('endDate').value;
