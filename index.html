@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finnhub Stock Query</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
-<body>
-    <h1>Finnhub Stock Query</h1>
-    <div>
-        <label for="stock">Select Stock:</label>
-        <select id="stock">
-            <!-- Example stocks, you can add more -->
-            <option value="AAPL">Apple</option>
-            <option value="GOOGL">Google</option>
-            <option value="MSFT">Microsoft</option>
-        </select>
-    </div>
-    <div>
-        <label for="startDate">Start Date:</label>
-        <input type="date" id="startDate">
-        <label for="endDate">End Date:</label>
-        <input type="date" id="endDate">
-    </div>
-    <button onclick="fetchData()">Fetch Data</button>
-    <div id="results"></div>
-    <script src="script.js" defer></script>
 
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Finnhub Stock Query</h1>
+        <div class="form-group">
+            <label for="stock">Select Stock:</label>
+            <select id="stock" class="form-control">
+                <!-- Example stocks, you can add more -->
+                <option value="AAPL">Apple</option>
+                <option value="GOOGL">Google</option>
+                <option value="MSFT">Microsoft</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate" class="form-control">
+            </div>
+        </div>
+        <button onclick="fetchData()" class="btn btn-primary mb-4">Fetch Data</button>
+        <div id="results"></div>
+    </div>
+    <script src="script.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
