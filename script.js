@@ -35,6 +35,7 @@ function fetchData() {
         .then(response => response.json())
         .then(data => {
             // Assuming the 't' key in the response contains the dates (UNIX timestamps)
+            console.log(data); 
             const dates = data['t'].map(timestamp => new Date(timestamp * 1000).toISOString().split('T')[0]);
             const prices = data['c'];
 
