@@ -3,18 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Data Visualization</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Finnhub Stock Query</title>
 </head>
 <body>
-    <select id="stockTicker">
-        <!-- Add stock ticker options here -->
-    </select>
-    <input type="date" id="startDate">
-    <input type="date" id="endDate">
-    <button onclick="fetchAndPlotData()">Plot Data</button>
-    <div id="chartContainer"></div>
+    <h1>Finnhub Stock Query</h1>
+    <div>
+        <label for="stock">Select Stock:</label>
+        <select id="stock">
+            <!-- Example stocks, you can add more -->
+            <option value="AAPL">Apple</option>
+            <option value="GOOGL">Google</option>
+            <option value="MSFT">Microsoft</option>
+        </select>
+    </div>
+    <div>
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate">
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate">
+    </div>
+    <button onclick="fetchData()">Fetch Data</button>
+    <div id="results"></div>
     <script src="script.js"></script>
 </body>
 </html>
