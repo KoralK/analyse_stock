@@ -63,13 +63,19 @@ function populateStockSymbols() {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            const stockDropdown = document.getElementById('stock');
-            data.forEach(stock => {
-                const option = document.createElement('option');
-                option.value = stock.symbol;
-                option.textContent = stock.description;
-                stockDropdown.appendChild(option);
-            });
+            console.log("Stock Symbols API Response:", data);  // Log the API response
+
+            if (Array.isArray(data)) {  // Check if data is an array
+                const stockDropdown = document.getElementById('stock');
+                data.forEach(stock => {
+                    const option = document.createElement('option');
+                    option.value = stock.symbol;
+                    option.textContent = stock.description;
+                    stockDropdown.appendChild(option);
+                });
+            } else {
+                console.error("Unexpected data format for stock symbols:", data);
+            }
         })
         .catch(error => {
             console.error('Error fetching stock symbols:', error);
