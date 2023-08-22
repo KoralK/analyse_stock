@@ -34,13 +34,16 @@ function fetchData() {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            // Assuming the 't' key in the response contains the dates (UNIX timestamps)
-            console.log(data); 
-            const dates = data['t'].map(timestamp => new Date(timestamp * 1000).toISOString().split('T')[0]);
-            const prices = data['c'];
+            console.log("API Response:", data);  // Log the API response
 
-            // Plot the data using Plotly.js
-            plotData(dates, prices);
+            // Check if the expected keys are present in the response
+            if (data['t'] && data['c']) {
+                const dates = data['t'].map(timestamp => new Date(timestamp * 1000).toISOString().split('T')[0]);
+                const prices = data['c'];
+                plotData(dates, prices);
+            } else {
+                console.error("Unexpected data format or missing data:", data);
+            }
         })
         .catch(error => {
             console.error('Error fetching data:', error);
