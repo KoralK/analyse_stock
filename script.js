@@ -57,7 +57,7 @@ function fetchData() {
 }
 
 function populateStockSymbols() {
-    const API_KEY = 'YOUR_FINNHUB_API_KEY'; // Replace with your actual API key
+    
     const url = `https://finnhub.io/api/v1/stock/symbol?exchange=US&token=${API_KEY}`;
 
     fetch(url)
