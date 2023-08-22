@@ -55,3 +55,26 @@ function fetchData() {
             console.error('Error fetching data:', error);
         });
 }
+
+function populateStockSymbols() {
+    const API_KEY = 'YOUR_FINNHUB_API_KEY'; // Replace with your actual API key
+    const url = `https://finnhub.io/api/v1/stock/symbol?exchange=US&token=${API_KEY}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const stockDropdown = document.getElementById('stock');
+            data.forEach(stock => {
+                const option = document.createElement('option');
+                option.value = stock.symbol;
+                option.textContent = stock.description;
+                stockDropdown.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching stock symbols:', error);
+        });
+}
+
+window.onload = populateStockSymbols;
+
