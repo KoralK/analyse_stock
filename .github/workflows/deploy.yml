@@ -21,17 +21,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Clean previous build
+        run: rm -rf dist/*  # Clean the dist directory before building
+
       - name: Build the project
         run: npm run build  # This runs the build script defined in package.json
 
       - name: Inject API key
         run: echo "const API_KEY = '${{ secrets.FINNHUB_API_KEY }}';" > ./dist/config.js
 
-      - name: Clean previous deployment
-        run: rm -rf ./dist/*  # Clean the dist directory
-
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3  # Make sure this is up-to-date
+        uses: peaceiris/actions-gh-pages@v4  # Update to v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
