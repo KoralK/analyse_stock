@@ -2,10 +2,12 @@
   "name": "analyse_stock",
   "version": "1.0.0",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "start": "webpack serve --open"
   },
   "devDependencies": {
     "webpack": "^5.0.0",
-    "webpack-cli": "^4.0.0"
+    "webpack-cli": "^4.0.0",
+    "webpack-dev-server": "^4.15.2"
   }
 }
