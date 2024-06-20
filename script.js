@@ -1,4 +1,5 @@
-const API_KEY = 'cjiacb9r01qonds7mqhgcjiacb9r01qonds7mqi0'; // Replace with your Finnhub API key
+// config.js will be generated during deployment and contains the API_KEY
+// const API_KEY = 'your-api-key'; // This line will be replaced during build
 
 function plotData(dates, prices) {
     const trace = {
@@ -7,7 +8,7 @@ function plotData(dates, prices) {
         name: 'Stock Price',
         x: dates,
         y: prices,
-        line: {color: '#17BECF'}
+        line: { color: '#17BECF' }
     };
 
     const layout = {
@@ -36,12 +37,9 @@ function fetchData() {
         .then(data => {
             console.log("API Response:", data);  // Log the API response
 
-            // Check if the expected keys are present in the response
-
             if (data['s'] && data['s'] === 'no_data') {
                 console.error("No data available for the selected stock and date range.");
-                // Optionally, display a message to the user on the webpage
-                document.getElementById('results').innerHTML = "<p>No data available for the selected stock and date range.</p>";
+                document.getElementById('results').innerHTML = "<p class='text-danger'>No data available for the selected stock and date range.</p>";
             } else if (data['t'] && data['c']) {
                 const dates = data['t'].map(timestamp => new Date(timestamp * 1000).toISOString().split('T')[0]);
                 const prices = data['c'];
@@ -49,15 +47,15 @@ function fetchData() {
             } else {
                 console.error("Unexpected data format:", data);
             }
-                        
+
         })
         .catch(error => {
             console.error('Error fetching data:', error);
+            document.getElementById('results').innerHTML = "<p class='text-danger'>Error fetching data.</p>";
         });
 }
 
 function populateStockSymbols() {
-    
     const url = `https://finnhub.io/api/v1/stock/symbol?exchange=US&token=${API_KEY}`;
 
     fetch(url)
@@ -83,4 +81,3 @@ function populateStockSymbols() {
 }
 
 window.onload = populateStockSymbols;
-
